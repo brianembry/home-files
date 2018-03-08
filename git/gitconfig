@@ -1,6 +1,6 @@
 [user]
-	email = matt.hauck@tanium.com
-	name = Matt Hauck
+	email = brian.embry@tanium.com
+	name = Brian Embry
 [branch]
   autosetupmerge = true
   autosetuprebase = always
@@ -30,3 +30,5 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	required = true
+[diff]
+	tool = vimdiff
