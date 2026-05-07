@@ -105,6 +105,16 @@ if [[ -z "$SSH_CLIENT" ]] && [[ -z "$SSH_TTY" ]]; then
    enable_gpg_agent
 fi
 
+# Keep SSH agent forwarding alive across tmux reattaches via a stable symlink.
+# When SSHing in, update the symlink before attaching to tmux so all existing
+# panes (which point to the stable path) automatically pick up the new socket.
+if [ -n "$SSH_AUTH_SOCK" ] && [ "$SSH_AUTH_SOCK" != "$HOME/.ssh/ssh_auth_sock" ]; then
+    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"
+fi
+if [ -e "$HOME/.ssh/ssh_auth_sock" ]; then
+    export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
+fi
+
 # aliases
 
 alias ls='ls -G'

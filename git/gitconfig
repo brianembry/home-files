@@ -18,7 +18,7 @@
   ff = pull --ff-only
   b = branch
   co = checkout
-[branch "master"]
+[branch "main"]
   rebase = true
 [push]
   default = simple
@@ -30,5 +30,9 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	required = true
+	process = git-lfs filter-process
 [diff]
 	tool = vimdiff
+[core]
+	editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
